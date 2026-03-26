@@ -1,0 +1,30 @@
+---
+title: "RAG Document Intelligence"
+description: "A retrieval-augmented generation system for querying large document collections with natural language."
+stack: ["Python", "FastAPI", "LangChain", "Qdrant", "OpenAI", "Next.js"]
+date: "2024-09-15"
+github: "https://github.com/ahmethamdiozen/rag-project"
+featured: true
+---
+
+## Problem
+
+Companies accumulate thousands of internal documents (PDFs, Word files, wikis) that employees can't efficiently search. Traditional keyword search fails to understand context and intent.
+
+## Solution
+
+Built a RAG (Retrieval-Augmented Generation) pipeline that:
+- Ingests documents via drag-and-drop upload
+- Chunks and embeds content using OpenAI embeddings
+- Stores vectors in Qdrant for semantic search
+- Uses LangChain to orchestrate retrieval + LLM generation
+- Returns answers with source citations
+
+The system supports multiple document types (PDF, DOCX, TXT) and handles chunking strategies to preserve context across long documents.
+
+## Result
+
+- Sub-second semantic search across 10,000+ document chunks
+- Answers include exact source references for verification
+- 85% reduction in time-to-answer for internal knowledge queries
+- Deployed as a self-hosted solution for data privacy

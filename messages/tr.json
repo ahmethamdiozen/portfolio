@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "projects": "Projeler",
+    "contact": "İletişim",
+    "home": "Ana Sayfa"
+  },
+  "hero": {
+    "greeting": "Merhaba, ben",
+    "name": "Ahmet Hamdi Özen",
+    "title": "Full Stack & AI Mühendisi",
+    "tagline": "LLM destekli API'lardan production-ready SaaS ürünlerine kadar akıllı web uygulamaları geliştiriyorum.",
+    "cta_projects": "Projeleri Gör",
+    "cta_contact": "İletişime Geç"
+  },
+  "about": {
+    "heading": "Hakkımda",
+    "body": "Yeni mezun Full Stack & AI Mühendisiyim. Uçtan uca akıllı sistemler geliştirme konusunda tutkuluyum. Python/FastAPI backend'leri, Next.js frontend'leri ve büyük dil modellerini gerçek dünya ürünlerine entegre etme konusunda uzmanlaştım. Şu an freelance projeler ve tam zamanlı fırsatlara açığım."
+  },
+  "projects": {
+    "heading": "Projeler",
+    "view_all": "Tüm Projeleri Gör",
+    "view_details": "Detayları Gör",
+    "github": "GitHub",
+    "demo": "Canlı Demo"
+  },
+  "skills": {
+    "heading": "Beceriler & Teknolojiler"
+  },
+  "contact": {
+    "heading": "İletişime Geç",
+    "subheading": "Freelance çalışmalar ve tam zamanlı roller için açığım. Birlikte bir şeyler inşa edelim.",
+    "email_label": "E-posta",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn"
+  },
+  "footer": {
+    "built_with": "Next.js & Tailwind CSS ile yapıldı"
+  }
+}

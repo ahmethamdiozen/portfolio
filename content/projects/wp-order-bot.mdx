@@ -1,0 +1,30 @@
+---
+title: "WhatsApp Order Bot"
+description: "An AI-powered WhatsApp chatbot that automates order taking and customer support for restaurants."
+stack: ["Python", "FastAPI", "WhatsApp Business API", "OpenAI", "PostgreSQL", "Redis"]
+date: "2024-07-20"
+github: "https://github.com/ahmethamdiozen/wp-order-bot"
+featured: true
+---
+
+## Problem
+
+Small restaurant owners spend significant time manually processing WhatsApp orders, leading to errors, delays, and inconsistent customer experience. They needed an automated solution that felt natural to customers already using WhatsApp.
+
+## Solution
+
+Built an AI chatbot that integrates with the WhatsApp Business API to:
+- Understand natural language orders in Turkish and English
+- Present menus interactively with prices
+- Handle modifications and special requests
+- Confirm orders and provide estimated wait times
+- Escalate complex issues to human staff
+
+The bot uses OpenAI's function calling to extract structured order data from conversational messages, with Redis for session state management.
+
+## Result
+
+- Handled 300+ orders per day without human intervention
+- Order accuracy improved from 87% to 99%
+- Average order processing time reduced from 4 minutes to 45 seconds
+- Restaurant owner saved ~3 hours of daily manual work

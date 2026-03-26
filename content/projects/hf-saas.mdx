@@ -1,0 +1,29 @@
+---
+title: "HuggingFace SaaS Platform"
+description: "A multi-tenant SaaS platform for deploying and managing HuggingFace models with usage-based billing."
+stack: ["Next.js", "FastAPI", "PostgreSQL", "Docker", "Stripe", "HuggingFace"]
+date: "2024-11-01"
+github: "https://github.com/ahmethamdiozen/hf-saas"
+featured: true
+---
+
+## Problem
+
+Organizations want to use state-of-the-art AI models from HuggingFace but struggle with deployment complexity, API management, and cost tracking. There was no simple SaaS wrapper that handled authentication, rate limiting, and billing in one place.
+
+## Solution
+
+Built a multi-tenant SaaS platform where users can:
+- Browse and deploy any HuggingFace model with a single click
+- Get a managed API endpoint with authentication
+- Monitor usage and costs in real-time
+- Pay only for what they use via Stripe metered billing
+
+The backend uses FastAPI for the inference proxy layer, with a Next.js dashboard for the frontend. Each tenant gets isolated API keys and usage quotas.
+
+## Result
+
+- Reduced model deployment time from hours to minutes
+- Built-in rate limiting prevented runaway costs
+- Stripe integration enabled automated billing
+- Docker-based deployment made scaling straightforward
