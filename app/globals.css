@@ -17,9 +17,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom cursor — hide system cursor */
-* {
-  cursor: none !important;
+/* Custom cursor — hide system cursor (only on pointer devices) */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 /* Text selection */

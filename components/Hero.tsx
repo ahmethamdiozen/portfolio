@@ -41,7 +41,7 @@ export default function Hero({ locale }: HeroProps) {
         </div>
 
         {/* Name — char by char */}
-        <h1 className="text-6xl md:text-8xl font-bold text-[#2C2C2C] mb-4 tracking-tight leading-none">
+        <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold text-[#2C2C2C] mb-4 tracking-tight leading-none">
           {name.split("").map((char, i) => (
             <span key={i} className="inline-block overflow-hidden">
               <motion.span
