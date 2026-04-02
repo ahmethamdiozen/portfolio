@@ -8,13 +8,13 @@
     "greeting": "Merhaba, ben",
     "name": "Ahmet Hamdi Özen",
     "title": "Full Stack & AI Mühendisi",
-    "tagline": "LLM destekli API'lardan production-ready SaaS ürünlerine kadar akıllı web uygulamaları geliştiriyorum.",
+    "tagline": "Karmaşık fikirleri production-ready yazılıma dönüştürüyorum — LLM destekli backend'lerden kullanıcıların sevdiği arayüzlere.",
     "cta_projects": "Projeleri Gör",
     "cta_contact": "İletişime Geç"
   },
   "about": {
     "heading": "Hakkımda",
-    "body": "Yeni mezun Full Stack & AI Mühendisiyim. Uçtan uca akıllı sistemler geliştirme konusunda tutkuluyum. Python/FastAPI backend'leri, Next.js frontend'leri ve büyük dil modellerini gerçek dünya ürünlerine entegre etme konusunda uzmanlaştım. Şu an freelance projeler ve tam zamanlı fırsatlara açığım."
+    "body": "Backend sistemleri ile yapay zeka kesişiminde uzmanlaşmış bir Full Stack & AI Mühendisiyim. Python, FastAPI ve Next.js ile uçtan uca çözümler tasarlıyor, büyük dil modelleriyle güçlendiriyorum. RAG pipeline'ı, gerçek zamanlı SaaS dashboard'u ya da günde yüzlerce sipariş işleyen AI chatbot — gerçek sorunları çözen ürünler geliştiriyorum."
   },
   "projects": {
     "heading": "Projeler",
@@ -27,8 +27,8 @@
     "heading": "Beceriler & Teknolojiler"
   },
   "contact": {
-    "heading": "İletişime Geç",
-    "subheading": "Freelance çalışmalar ve tam zamanlı roller için açığım. Birlikte bir şeyler inşa edelim.",
+    "heading": "Birlikte Bir Şeyler İnşa Edelim",
+    "subheading": "Tam zamanlı pozisyonlar ve seçili freelance projeler için müsaitim. 24 saat içinde dönüş yapıyorum.",
     "email_label": "E-posta",
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn"

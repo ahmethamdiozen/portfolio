@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 interface AnimatedTextProps {
@@ -9,6 +9,8 @@ interface AnimatedTextProps {
   delay?: number;
   once?: boolean;
 }
+
+const ease = [0.33, 1, 0.68, 1] as const;
 
 export function AnimatedWords({
   text,
@@ -31,7 +33,7 @@ export function AnimatedWords({
             animate={inView ? { y: "0%", opacity: 1 } : { y: "110%", opacity: 0 }}
             transition={{
               duration: 0.65,
-              ease: [0.33, 1, 0.68, 1],
+              ease,
               delay: delay + i * 0.055,
             }}
           >
@@ -69,7 +71,7 @@ export function AnimatedChars({
             }
             transition={{
               duration: 0.55,
-              ease: [0.33, 1, 0.68, 1],
+              ease,
               delay: delay + i * 0.03,
             }}
           >
@@ -103,10 +105,33 @@ export function FadeUp({
       animate={inView ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }}
       transition={{
         duration: 0.7,
-        ease: [0.33, 1, 0.68, 1],
+        ease,
         delay,
       }}
     >
+      {children}
+    </motion.div>
+  );
+}
+
+export function ParallaxSection({
+  children,
+  className,
+  speed = 0.1,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  speed?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [50 * speed, -50 * speed]);
+
+  return (
+    <motion.div ref={ref} className={className} style={{ y }}>
       {children}
     </motion.div>
   );
@@ -153,15 +178,41 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { y: 30, opacity: 0 },
+        hidden: { y: 30, opacity: 0, scale: 0.95 },
         visible: {
           y: 0,
           opacity: 1,
-          transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1] },
+          scale: 1,
+          transition: { duration: 0.6, ease },
         },
       }}
     >
       {children}
     </motion.div>
+  );
+}
+
+export function RevealLine({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+
+  return (
+    <div ref={ref} className={`overflow-hidden ${className ?? ""}`}>
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={inView ? { y: "0%" } : { y: "100%" }}
+        transition={{ duration: 0.7, ease, delay }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }

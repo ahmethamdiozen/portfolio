@@ -1,6 +1,6 @@
 ---
 title: "WhatsApp Order Bot"
-description: "An AI-powered WhatsApp chatbot that automates order taking and customer support for restaurants."
+description: "An AI-powered WhatsApp chatbot that automates restaurant ordering — handling 300+ daily orders with 99% accuracy in both Turkish and English."
 stack: ["Python", "FastAPI", "WhatsApp Business API", "OpenAI", "PostgreSQL", "Redis"]
 date: "2024-07-20"
 github: "https://github.com/ahmethamdiozen/wp-order-bot"
@@ -9,22 +9,23 @@ featured: true
 
 ## Problem
 
-Small restaurant owners spend significant time manually processing WhatsApp orders, leading to errors, delays, and inconsistent customer experience. They needed an automated solution that felt natural to customers already using WhatsApp.
+Small restaurant owners were drowning in WhatsApp order messages — manually parsing requests, confirming details, and tracking orders. The result: errors, delays, and a customer experience that couldn't scale. They needed automation that met customers where they already were: WhatsApp.
 
 ## Solution
 
-Built an AI chatbot that integrates with the WhatsApp Business API to:
-- Understand natural language orders in Turkish and English
-- Present menus interactively with prices
-- Handle modifications and special requests
-- Confirm orders and provide estimated wait times
-- Escalate complex issues to human staff
+Built an **AI-powered order processing system** that integrates natively with WhatsApp Business API:
 
-The bot uses OpenAI's function calling to extract structured order data from conversational messages, with Redis for session state management.
+- **Bilingual natural language understanding** — processes orders in Turkish and English, handling slang, abbreviations, and conversational style
+- **Structured data extraction** — OpenAI function calling converts free-text messages into validated order objects with items, quantities, and modifications
+- **Interactive menu presentation** — displays categorized menus with prices and handles real-time modifications
+- **Smart escalation** — automatically routes complex requests or complaints to human staff while handling routine orders autonomously
+- **Session management** — Redis-backed conversation state enables multi-turn order flows with context retention
+
+The architecture uses a FastAPI webhook server with PostgreSQL for order persistence and Redis for real-time session state.
 
 ## Result
 
-- Handled 300+ orders per day without human intervention
-- Order accuracy improved from 87% to 99%
-- Average order processing time reduced from 4 minutes to 45 seconds
-- Restaurant owner saved ~3 hours of daily manual work
+- **300+ orders/day** processed without human intervention
+- **Order accuracy: 87% → 99%** — structured extraction eliminated misunderstandings
+- **Processing time: 4 min → 45 sec** per order — 5x faster than manual handling
+- **3 hours saved daily** for the restaurant owner — redirected to business growth

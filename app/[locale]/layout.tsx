@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import CustomCursor from "@/components/CustomCursor";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import AnimatedFooter from "@/components/AnimatedFooter";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,24 +45,14 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased cursor-none`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <SmoothScrollProvider>
             <CustomCursor />
             <Navbar />
             <main>{children}</main>
-            <footer className="border-t border-[#E8E4DC] py-10 bg-[#FAF9F6]">
-              <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-sm font-bold text-[#2C2C2C]">
-                  Ahmet Hamdi Özen
-                </span>
-                <span className="text-sm text-[#9B9589]">
-                  © {new Date().getFullYear()} — Built with Next.js & Tailwind
-                  CSS
-                </span>
-              </div>
-            </footer>
+            <AnimatedFooter />
           </SmoothScrollProvider>
         </NextIntlClientProvider>
       </body>

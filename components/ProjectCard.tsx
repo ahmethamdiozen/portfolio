@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { useRef, useState } from "react";
-import { motion, useSpring } from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { saveHomeScroll } from "./ScrollRestorer";
 
 interface ProjectCardProps {
@@ -28,22 +28,33 @@ export default function ProjectCard({
   const ref = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
-  const rotateX = useSpring(0, { stiffness: 200, damping: 20 });
-  const rotateY = useSpring(0, { stiffness: 200, damping: 20 });
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [6, -6]), {
+    stiffness: 200,
+    damping: 20,
+  });
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-6, 6]), {
+    stiffness: 200,
+    damping: 20,
+  });
   const scale = useSpring(1, { stiffness: 300, damping: 25 });
+
+  // Spotlight gradient position
+  const spotlightX = useTransform(mouseX, [0, 1], [0, 100]);
+  const spotlightY = useTransform(mouseY, [0, 1], [0, 100]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    rotateY.set(x * 10);
-    rotateX.set(-y * 10);
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
   };
 
   const handleMouseLeave = () => {
-    rotateX.set(0);
-    rotateY.set(0);
+    mouseX.set(0.5);
+    mouseY.set(0.5);
     scale.set(1);
     setHovered(false);
   };
@@ -69,6 +80,19 @@ export default function ProjectCard({
       className="relative bg-[#F5F3EE] border border-[#E8E4DC] rounded-xl flex flex-col overflow-hidden cursor-pointer"
       data-cursor-hover
     >
+      {/* Spotlight glow that follows cursor */}
+      <motion.div
+        className="absolute inset-0 rounded-xl pointer-events-none opacity-0 transition-opacity duration-300"
+        style={{
+          opacity: hovered ? 1 : 0,
+          background: useTransform(
+            [spotlightX, spotlightY],
+            ([x, y]) =>
+              `radial-gradient(circle at ${x}% ${y}%, rgba(139, 115, 85, 0.08) 0%, transparent 60%)`
+          ),
+        }}
+      />
+
       {/* Hover border glow */}
       <motion.div
         className="absolute inset-0 rounded-xl border border-[#8B7355] pointer-events-none"
@@ -83,17 +107,21 @@ export default function ProjectCard({
         transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
       />
 
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-5 sm:p-6 flex flex-col flex-1">
         {/* Title */}
-        <h3 className="text-xl font-semibold text-[#2C2C2C] mb-3 group-hover:text-[#8B7355] transition-colors">
+        <motion.h3
+          className="text-lg sm:text-xl font-semibold text-[#2C2C2C] mb-3"
+          animate={{ x: hovered ? 4 : 0 }}
+          transition={{ duration: 0.3, ease: [0.33, 1, 0.68, 1] }}
+        >
           {title}
-        </h3>
+        </motion.h3>
 
         {/* Description */}
-        <p className="text-[#9B9589] mb-5 leading-relaxed flex-1">{description}</p>
+        <p className="text-sm sm:text-base text-[#9B9589] mb-5 leading-relaxed flex-1">{description}</p>
 
         {/* Stack badges */}
-        <div className="flex flex-wrap gap-2 mb-6">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
           {stack.slice(0, 4).map((tech, i) => (
             <motion.div
               key={tech}

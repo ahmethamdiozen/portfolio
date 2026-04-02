@@ -5,9 +5,11 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { AnimatedWords, FadeUp, StaggerContainer, StaggerItem } from "@/components/AnimatedText";
 import MagneticButton from "@/components/MagneticButton";
-import TechIcon from "@/components/TechIcon";
+import SkillCard from "@/components/SkillCard";
 import Image from "next/image";
 import { ScrollRestorer } from "@/components/ScrollRestorer";
+import ScrollProgress from "@/components/ScrollProgress";
+import SectionDivider from "@/components/SectionDivider";
 
 export default async function HomePage({
   params,
@@ -38,24 +40,20 @@ export default async function HomePage({
   return (
     <div>
       <ScrollRestorer />
+      <ScrollProgress />
       <Hero locale={locale} />
 
       {/* About */}
-      <section id="about" className="py-24 bg-[#F5F3EE]">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="about" className="py-16 sm:py-24 bg-[#F5F3EE]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeUp>
             <h2 className="text-sm font-medium text-[#9B9589] tracking-widest uppercase mb-6">
               {aboutT("heading")}
             </h2>
           </FadeUp>
-          <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="flex-1">
-              <p className="text-2xl md:text-3xl font-medium text-[#2C2C2C] leading-snug">
-                <AnimatedWords text={aboutT("body")} delay={0.1} />
-              </p>
-            </div>
-            <FadeUp delay={0.3} className="flex-shrink-0">
-              <div className="w-44 h-44 rounded-3xl overflow-hidden border border-[#E8E4DC]">
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center md:items-start">
+            <FadeUp delay={0.3} className="flex-shrink-0 order-first md:order-last">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 rounded-3xl overflow-hidden border border-[#E8E4DC]">
                 <Image
                   src="/hamdi.jpg"
                   alt="Ahmet Hamdi Özen"
@@ -66,19 +64,24 @@ export default async function HomePage({
                 />
               </div>
             </FadeUp>
+            <div className="flex-1">
+              <p className="text-xl sm:text-2xl md:text-3xl font-medium text-[#2C2C2C] leading-snug text-center md:text-left">
+                <AnimatedWords text={aboutT("body")} delay={0.1} />
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Projects */}
-      <section id="projects" className="py-24 bg-[#FAF9F6]">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="projects" className="py-16 sm:py-24 bg-[#FAF9F6]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeUp className="flex items-end justify-between mb-12">
             <div>
               <p className="text-sm font-medium text-[#9B9589] tracking-widest uppercase mb-2">
                 Work
               </p>
-              <h2 className="text-4xl font-bold text-[#2C2C2C]">{t("heading")}</h2>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#2C2C2C]">{t("heading")}</h2>
             </div>
             <MagneticButton strength={0.3}>
               <Link
@@ -119,32 +122,22 @@ export default async function HomePage({
       </section>
 
       {/* Skills */}
-      <section id="skills" className="py-24 bg-[#F5F3EE]">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="skills" className="py-16 sm:py-24 bg-[#F5F3EE]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeUp className="mb-10">
             <p className="text-sm font-medium text-[#9B9589] tracking-widest uppercase mb-2">
               Stack
             </p>
-            <h2 className="text-4xl font-bold text-[#2C2C2C]">{skillsT("heading")}</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#2C2C2C]">{skillsT("heading")}</h2>
           </FadeUp>
 
           <StaggerContainer
-            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3"
             staggerDelay={0.05}
           >
             {skills.map((skill) => (
               <StaggerItem key={skill}>
-                <div
-                  className="group flex flex-col items-center gap-2 p-4 rounded-xl bg-[#FAF9F6] border border-[#E8E4DC] hover:border-[#8B7355] hover:shadow-sm transition-all duration-300 cursor-default"
-                  data-cursor-hover
-                >
-                  <span className="transition-transform duration-300 group-hover:scale-110 text-[#2C2C2C] group-hover:text-[#8B7355]">
-                    <TechIcon name={skill} size={26} />
-                  </span>
-                  <span className="text-xs font-medium text-[#2C2C2C] text-center group-hover:text-[#8B7355] transition-colors duration-300">
-                    {skill}
-                  </span>
-                </div>
+                <SkillCard name={skill} />
               </StaggerItem>
             ))}
           </StaggerContainer>
@@ -152,20 +145,20 @@ export default async function HomePage({
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-[#FAF9F6]">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="contact" className="py-16 sm:py-24 bg-[#FAF9F6]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <FadeUp className="mb-4">
             <p className="text-sm font-medium text-[#9B9589] tracking-widest uppercase mb-2">
               Contact
             </p>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2C2C2C] mb-4 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#2C2C2C] mb-4 leading-tight">
               {contactT("heading")}
             </h2>
           </FadeUp>
           <FadeUp delay={0.2}>
-            <p className="text-lg text-[#9B9589] mb-12 max-w-lg">{contactT("subheading")}</p>
+            <p className="text-base sm:text-lg text-[#9B9589] mb-10 sm:mb-12 max-w-lg">{contactT("subheading")}</p>
           </FadeUp>
 
           <StaggerContainer className="flex flex-col sm:flex-row gap-4" staggerDelay={0.1}>
