@@ -9,7 +9,6 @@ import SkillCard from "@/components/SkillCard";
 import Image from "next/image";
 import { ScrollRestorer } from "@/components/ScrollRestorer";
 import ScrollProgress from "@/components/ScrollProgress";
-import SectionDivider from "@/components/SectionDivider";
 
 export default async function HomePage({
   params,

@@ -23,7 +23,8 @@ export default function SmoothScrollProvider({
       smoothWheel: true,
     });
 
-    setLenis(l);
+    // Use a microtask to avoid synchronous setState in effect
+    queueMicrotask(() => setLenis(l));
 
     let rafId: number;
     function raf(time: number) {

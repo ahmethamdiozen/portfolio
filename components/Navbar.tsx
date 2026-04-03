@@ -8,6 +8,34 @@ import { useState } from "react";
 
 const ease = [0.33, 1, 0.68, 1] as const;
 
+function LocaleSwitcher({
+  locale,
+  onSwitch,
+}: {
+  locale: string;
+  onSwitch: (loc: string) => void;
+}) {
+  return (
+    <div className="flex items-center gap-1 border border-[#E8E4DC] rounded-lg p-1">
+      {(["en", "tr"] as const).map((loc) => (
+        <motion.button
+          key={loc}
+          onClick={() => onSwitch(loc)}
+          className={`px-2.5 py-1 text-xs rounded-md font-medium transition-colors duration-200 ${
+            locale === loc
+              ? "bg-[#8B7355] text-white"
+              : "text-[#9B9589] hover:text-[#2C2C2C]"
+          }`}
+          whileTap={{ scale: 0.95 }}
+          layout
+        >
+          {loc.toUpperCase()}
+        </motion.button>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const t = useTranslations("nav");
   const locale = useLocale();
@@ -32,26 +60,6 @@ export default function Navbar() {
     segments[1] = newLocale;
     router.push(segments.join("/"));
   };
-
-  const LocaleSwitcher = () => (
-    <div className="flex items-center gap-1 border border-[#E8E4DC] rounded-lg p-1">
-      {(["en", "tr"] as const).map((loc) => (
-        <motion.button
-          key={loc}
-          onClick={() => switchLocale(loc)}
-          className={`px-2.5 py-1 text-xs rounded-md font-medium transition-colors duration-200 ${
-            locale === loc
-              ? "bg-[#8B7355] text-white"
-              : "text-[#9B9589] hover:text-[#2C2C2C]"
-          }`}
-          whileTap={{ scale: 0.95 }}
-          layout
-        >
-          {loc.toUpperCase()}
-        </motion.button>
-      ))}
-    </div>
-  );
 
   return (
     <motion.nav
@@ -94,12 +102,12 @@ export default function Navbar() {
             {t("contact")}
             <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-[#8B7355] transition-all duration-300 group-hover:w-full" />
           </Link>
-          <LocaleSwitcher />
+          <LocaleSwitcher locale={locale} onSwitch={switchLocale} />
         </div>
 
         {/* Mobile */}
         <div className="flex sm:hidden items-center gap-3">
-          <LocaleSwitcher />
+          <LocaleSwitcher locale={locale} onSwitch={switchLocale} />
           <motion.button
             onClick={() => setMenuOpen(!menuOpen)}
             className="flex flex-col justify-center gap-1.5 p-1 w-6 h-6"

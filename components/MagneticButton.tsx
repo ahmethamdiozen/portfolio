@@ -7,7 +7,6 @@ interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   strength?: number;
-  as?: "button" | "a" | "div";
   href?: string;
   target?: string;
   rel?: string;
@@ -18,7 +17,6 @@ export default function MagneticButton({
   children,
   className = "",
   strength = 0.4,
-  as: Tag = "div",
   href,
   target,
   rel,
