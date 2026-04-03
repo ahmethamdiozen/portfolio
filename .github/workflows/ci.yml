@@ -27,14 +27,3 @@ jobs:
       - name: Build
         run: npm run build
 
-  deploy:
-    needs: ci
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    steps:
-      - name: Trigger Coolify deploy
-        run: |
-          curl -s -X GET "${{ secrets.COOLIFY_WEBHOOK }}" \
-            -H "Accept: application/json" \
-            --fail
