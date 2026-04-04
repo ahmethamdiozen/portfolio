@@ -8,7 +8,7 @@
     "greeting": "Hi, I'm",
     "name": "Ahmet Hamdi Özen",
     "title": "Full Stack & AI Engineer",
-    "tagline": "I turn complex ideas into production-grade software — from LLM-powered backends to pixel-perfect interfaces that users love.",
+    "tagline": "I turn complex ideas into production-grade software — from LLM-powered backends to pixel-perfect interfaces users love.",
     "cta_projects": "View Projects",
     "cta_contact": "Get in Touch"
   },
@@ -34,6 +34,6 @@
     "linkedin_label": "LinkedIn"
   },
   "footer": {
-    "built_with": "Built with Next.js & Tailwind CSS"
+    "built_with": "Built with Next.js, Tailwind CSS & Framer Motion"
   }
 }

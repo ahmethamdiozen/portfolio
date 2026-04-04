@@ -34,6 +34,6 @@
     "linkedin_label": "LinkedIn"
   },
   "footer": {
-    "built_with": "Next.js & Tailwind CSS ile yapıldı"
+    "built_with": "Next.js, Tailwind CSS & Framer Motion ile yapıldı"
   }
 }
