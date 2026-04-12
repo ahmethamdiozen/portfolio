@@ -1,0 +1,24 @@
+---
+title: "RAG Doküman Arama"
+description: "Dokümanları vektör veri tabanına indeksleyip doğal dil sorularına kaynak atıflı cevaplar veren retrieval-augmented generation servisi."
+stack: ["Python", "FastAPI", "LangChain", "Qdrant", "OpenAI", "Next.js"]
+date: "2024-09-15"
+github: "https://github.com/ahmethamdiozen/rag-project"
+featured: true
+---
+
+## Genel Bakış
+
+RAG (retrieval-augmented generation) deseni üzerine kurulmuş bir doküman soru-cevap servisi. Dokümanlar parçalara bölünüp embed ediliyor ve vektör veri tabanında saklanıyor; sorgular anlamsal benzerlikle getiriliyor ve getirilen bağlamla birlikte LLM'e iletiliyor. Her cevap, oluşturulduğu kaynak pasajlarına referans içeriyor.
+
+## Teknolojiler
+
+- **FastAPI** — ingestion ve sorgu API'si
+- **LangChain** — chunking, retrieval ve prompt orkestrasyonu
+- **Qdrant** — embedding'ler için vektör veri tabanı
+- **OpenAI** — embedding ve chat completion modelleri
+- **Next.js** — yükleme ve sohbet arayüzü için frontend
+
+## Notlar
+
+PDF, DOCX ve TXT ingestion destekliyor. Chunking, sınırlar arasında bağlamı korumak için örtüşen (overlapping) pencereler kullanıyor ve retrieval aşaması LLM'e geçmeden önce top-k + skor eşiği filtresi uyguluyor.

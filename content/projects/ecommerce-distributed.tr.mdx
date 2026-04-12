@@ -1,0 +1,25 @@
+---
+title: "Dağıtık E-Ticaret Backend"
+description: "Event-driven iletişim, servis bağımsızlığı ve dağıtık veri desenlerini uygulayan microservice tabanlı bir e-ticaret backend."
+stack: ["Node.js", "TypeScript", "Kafka", "PostgreSQL", "Redis", "Docker", "gRPC"]
+date: "2025-02-15"
+github: "https://github.com/ahmethamdiozen/ecommerce-distributed"
+featured: true
+---
+
+## Genel Bakış
+
+Bağımsız servislere (ürün kataloğu, sepet, sipariş, ödeme, bildirim) ayrılmış dağıtık bir e-ticaret backend'i. Servisler domain event'leri için Kafka üzerinden asenkron, doğrudan yanıt gerektiren durumlarda gRPC üzerinden senkron haberleşiyor. Her servis kendi veri tabanına sahip.
+
+## Teknolojiler
+
+- **Node.js + TypeScript** — servis implementasyonları
+- **Apache Kafka** — order-placed, payment-completed, stock-reserved event'leri için event bus
+- **PostgreSQL** — servis başına ayrı veri deposu
+- **Redis** — sepet durumu ve idempotency key'leri
+- **gRPC** — düşük gecikmeli servisler arası çağrılar
+- **Docker Compose** — yerel ortamda tüm stack'i ayağa kaldırma
+
+## Notlar
+
+Proje temel olarak dağıtık sistem ödünleşmelerine odaklanıyor: servisler arası eventual consistency, retry ve dead-letter queue ile kısmi hata yönetimi, ve ortak veri tabanı tabloları yerine şema kayıtlı event'lerle servis bağımlılıklarını gevşek tutma.

@@ -1,0 +1,24 @@
+---
+title: "WhatsApp Order Bot"
+description: "A WhatsApp chatbot that receives restaurant orders in natural language, extracts structured data via LLM function calling, and persists them with full session state."
+stack: ["Python", "FastAPI", "WhatsApp Business API", "OpenAI", "PostgreSQL", "Redis"]
+date: "2024-07-20"
+github: "https://github.com/ahmethamdiozen/wp-order-bot"
+featured: true
+---
+
+## Overview
+
+A conversational ordering bot that runs on the WhatsApp Business API. Incoming messages are parsed with OpenAI function calling to extract items, quantities, and modifiers into a validated order object. Multi-turn conversations are supported through Redis-backed session state, and completed orders are stored in PostgreSQL.
+
+## Stack
+
+- **FastAPI** — webhook server for WhatsApp callbacks
+- **WhatsApp Business API** — message delivery and templates
+- **OpenAI function calling** — structured extraction from free-form text
+- **PostgreSQL** — order and menu persistence
+- **Redis** — conversation state and idempotency
+
+## Notes
+
+Handles both Turkish and English inputs. The function-calling schema is the single source of truth for the order shape — validation, database writes, and confirmation messages all derive from it, which keeps the prompt and the data model in sync.

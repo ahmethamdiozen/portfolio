@@ -1,0 +1,25 @@
+---
+title: "SaaS Platform"
+description: "A multi-tenant SaaS backend with authentication, subscription management, and per-tenant resource isolation."
+stack: ["FastAPI", "PostgreSQL", "Redis", "Docker", "Stripe", "JWT"]
+date: "2024-11-01"
+github: "https://github.com/ahmethamdiozen/saas-project-backend"
+featured: true
+---
+
+## Overview
+
+A backend service that powers a multi-tenant SaaS application. Each organization gets its own isolated workspace, API keys, and usage quotas. The system handles user authentication, subscription billing through Stripe, and request-level rate limiting.
+
+## Stack
+
+- **FastAPI** — async Python API layer with OpenAPI schema
+- **PostgreSQL** — primary data store with tenant-scoped queries
+- **Redis** — session cache and rate-limit counters
+- **Stripe** — subscription plans and metered billing webhooks
+- **JWT** — stateless authentication with refresh token rotation
+- **Docker Compose** — local development and deployment
+
+## Notes
+
+The codebase is structured around a service/repository pattern. Tenant isolation is enforced at the query layer rather than via separate schemas, which keeps migrations simple while still preventing cross-tenant data access.

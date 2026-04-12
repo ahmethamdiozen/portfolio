@@ -24,7 +24,7 @@ export default async function ProjectDetailPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectBySlug(slug, locale as "en" | "tr");
   const t = await getTranslations({ locale, namespace: 'projects' });
 
   if (!project) notFound();

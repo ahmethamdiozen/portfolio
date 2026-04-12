@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import { saveHomeScroll } from "./ScrollRestorer";
@@ -25,6 +26,7 @@ export default function ProjectCard({
   github,
   demo,
 }: ProjectCardProps) {
+  const t = useTranslations("projects");
   const ref = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -151,7 +153,7 @@ export default function ProjectCard({
             onClick={saveHomeScroll}
             className="group/link flex items-center gap-1 text-sm font-medium text-[#8B7355]"
           >
-            View Details
+            {t("view_details")}
             <motion.span
               animate={hovered ? { x: 4 } : { x: 0 }}
               transition={{ duration: 0.2 }}
@@ -169,7 +171,7 @@ export default function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
                 className="text-xs text-[#9B9589] hover:text-[#2C2C2C] transition-colors duration-200 tracking-wide"
               >
-                GitHub ↗
+                {t("github")} ↗
               </a>
             )}
             {demo && (
@@ -180,7 +182,7 @@ export default function ProjectCard({
                 onClick={(e) => e.stopPropagation()}
                 className="text-xs text-[#9B9589] hover:text-[#2C2C2C] transition-colors duration-200 tracking-wide"
               >
-                Demo ↗
+                {t("demo")} ↗
               </a>
             )}
           </div>

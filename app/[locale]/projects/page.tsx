@@ -9,7 +9,7 @@ export default async function ProjectsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'projects' });
-  const projects = getAllProjects();
+  const projects = getAllProjects(locale as "en" | "tr");
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] py-20">

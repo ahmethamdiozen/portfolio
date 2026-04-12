@@ -1,0 +1,24 @@
+---
+title: "RAG Document Search"
+description: "A retrieval-augmented generation service that indexes documents into a vector store and answers natural-language questions with source citations."
+stack: ["Python", "FastAPI", "LangChain", "Qdrant", "OpenAI", "Next.js"]
+date: "2024-09-15"
+github: "https://github.com/ahmethamdiozen/rag-project"
+featured: true
+---
+
+## Overview
+
+A document question-answering service built on the RAG (retrieval-augmented generation) pattern. Documents are chunked, embedded, and stored in a vector database; queries are retrieved by semantic similarity and passed to an LLM along with the retrieved context. Every answer references the source passages it was generated from.
+
+## Stack
+
+- **FastAPI** — ingestion and query API
+- **LangChain** — chunking, retrieval, and prompt orchestration
+- **Qdrant** — vector database for embeddings
+- **OpenAI** — embedding and chat completion models
+- **Next.js** — frontend for uploads and the chat interface
+
+## Notes
+
+Supports PDF, DOCX, and TXT ingestion. Chunking uses overlapping windows to preserve context across boundaries, and the retrieval step applies a top-k + score threshold filter before handing results to the LLM.

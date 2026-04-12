@@ -1,0 +1,25 @@
+---
+title: "SaaS Platform"
+description: "Kimlik doğrulama, abonelik yönetimi ve kiracı bazında kaynak izolasyonu sunan çok kiracılı (multi-tenant) bir SaaS backend."
+stack: ["FastAPI", "PostgreSQL", "Redis", "Docker", "Stripe", "JWT"]
+date: "2024-11-01"
+github: "https://github.com/ahmethamdiozen/saas-project-backend"
+featured: true
+---
+
+## Genel Bakış
+
+Çok kiracılı bir SaaS uygulamasının backend servisi. Her organizasyon kendi izole çalışma alanına, API anahtarlarına ve kullanım kotalarına sahip. Sistem; kullanıcı kimlik doğrulamayı, Stripe üzerinden abonelik faturalamayı ve istek bazlı rate limiting'i yönetiyor.
+
+## Teknolojiler
+
+- **FastAPI** — OpenAPI şemalı, async Python API katmanı
+- **PostgreSQL** — kiracı kapsamlı sorgularla birincil veri deposu
+- **Redis** — oturum cache'i ve rate-limit sayaçları
+- **Stripe** — abonelik planları ve metered billing webhook'ları
+- **JWT** — refresh token rotasyonlu stateless kimlik doğrulama
+- **Docker Compose** — yerel geliştirme ve deployment
+
+## Notlar
+
+Kod tabanı service/repository desenine göre yapılandırıldı. Kiracı izolasyonu ayrı şemalar yerine sorgu katmanında uygulanıyor; bu yaklaşım migration'ları sade tutarken kiracılar arası veri erişimini engelliyor.

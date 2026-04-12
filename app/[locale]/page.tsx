@@ -21,7 +21,7 @@ export default async function HomePage({
   const skillsT = await getTranslations({ locale, namespace: "skills" });
   const contactT = await getTranslations({ locale, namespace: "contact" });
 
-  const featuredProjects = getFeaturedProjects();
+  const featuredProjects = getFeaturedProjects(locale as "en" | "tr");
 
   const skills = [
     "Python",

@@ -1,0 +1,25 @@
+---
+title: "Distributed E-Commerce Backend"
+description: "A microservice-based e-commerce backend demonstrating event-driven communication, service independence, and distributed data patterns."
+stack: ["Node.js", "TypeScript", "Kafka", "PostgreSQL", "Redis", "Docker", "gRPC"]
+date: "2025-02-15"
+github: "https://github.com/ahmethamdiozen/ecommerce-distributed"
+featured: true
+---
+
+## Overview
+
+A distributed e-commerce backend split into independent services — product catalog, cart, order, payment, and notification. Services communicate asynchronously over Kafka for domain events and synchronously over gRPC where a direct response is needed. Each service owns its own database.
+
+## Stack
+
+- **Node.js + TypeScript** — service implementations
+- **Apache Kafka** — event bus for order-placed, payment-completed, stock-reserved events
+- **PostgreSQL** — per-service datastore
+- **Redis** — cart state and idempotency keys
+- **gRPC** — low-latency inter-service calls
+- **Docker Compose** — full stack orchestration for local runs
+
+## Notes
+
+The project is primarily a study in distributed-system tradeoffs: eventual consistency between services, handling partial failures with retries and dead-letter queues, and keeping services decoupled through schema-registered events rather than shared database tables.

@@ -1,0 +1,24 @@
+---
+title: "WhatsApp Sipariş Botu"
+description: "Restoran siparişlerini doğal dilde alan, LLM function calling ile yapılandırılmış veriye dönüştüren ve oturum durumunu yöneten bir WhatsApp botu."
+stack: ["Python", "FastAPI", "WhatsApp Business API", "OpenAI", "PostgreSQL", "Redis"]
+date: "2024-07-20"
+github: "https://github.com/ahmethamdiozen/wp-order-bot"
+featured: true
+---
+
+## Genel Bakış
+
+WhatsApp Business API üzerinde çalışan, konuşma tabanlı bir sipariş botu. Gelen mesajlar OpenAI function calling ile parse edilerek ürün, adet ve modifier'lar doğrulanmış bir sipariş nesnesine çevriliyor. Çok turlu konuşmalar Redis tabanlı oturum durumu ile destekleniyor ve tamamlanan siparişler PostgreSQL'e yazılıyor.
+
+## Teknolojiler
+
+- **FastAPI** — WhatsApp callback'leri için webhook sunucusu
+- **WhatsApp Business API** — mesaj iletimi ve şablonlar
+- **OpenAI function calling** — serbest metinden yapılandırılmış veri çıkarımı
+- **PostgreSQL** — sipariş ve menü kalıcılığı
+- **Redis** — konuşma durumu ve idempotency
+
+## Notlar
+
+Hem Türkçe hem İngilizce girdileri işliyor. Function-calling şeması sipariş yapısı için tek kaynak olarak kullanılıyor; validation, veri tabanı yazımları ve onay mesajları hep bu şemadan türüyor, böylece prompt ile veri modeli senkron kalıyor.
