@@ -164,7 +164,7 @@ export default async function HomePage({
             <StaggerItem>
               <MagneticButton strength={0.3}>
                 <a
-                  href="mailto:ahmet@example.com"
+                  href="mailto:hamdiahmetozen@gmail.com"
                   className="group relative overflow-hidden inline-flex items-center gap-3 px-7 py-3.5 bg-[#2C2C2C] text-white rounded-lg font-medium text-sm"
                   data-cursor-hover
                 >
