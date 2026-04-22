@@ -1,0 +1,26 @@
+---
+title: "DentaBook — Yapay Zeka Destekli Diş Kliniği"
+description: "Telefonda randevu alan bir yapay zeka sesli asistanı, Google Calendar senkronizasyonu ve Twilio SMS hatırlatıcılarıyla donatılmış diş kliniği yönetim sistemi."
+stack: ["TypeScript", "Node.js", "Vapi", "Google Calendar API", "Twilio", "PostgreSQL", "Prisma", "React"]
+date: "2024-11-10"
+github: "https://github.com/ahmethamdiozen/clinic-appointment-system"
+featured: true
+---
+
+## Genel Bakış
+
+Yapay zeka sesli asistanı etrafında inşa edilmiş tam kapsamlı bir klinik yönetim platformu. Hastalar bir Vapi telefon numarasını arayarak doğal konuşma diliyle bilgilerini aktarıyor; asistan Google Calendar'ın freebusy API'si üzerinden doktor müsaitliğini kontrol edip randevuyu otomatik olarak oluşturuyor. Personel, React tabanlı dashboard üzerinden programı yönetiyor ve yeni rezervasyonları gerçek zamanlı görüyor.
+
+## Teknolojiler
+
+- **Vapi** — Gelen aramaları uçtan uca yöneten yapay zeka sesli asistanı
+- **Google Calendar API** — Gerçek zamanlı müsaitlik kontrolü ve etkinlik oluşturma
+- **Twilio** — Giden SMS hatırlatıcıları ve gelen CANCEL yanıtı işleme
+- **Node.js + Express** — Vapi ve Twilio callback'leri için webhook sunucusu
+- **Prisma + PostgreSQL** — Randevu ve hasta verileri
+- **node-cron** — Zamanlanmış hatırlatıcı görevleri
+- **React** — Personel paneli (pnpm monorepo)
+
+## Notlar
+
+Rezervasyon akışı tamamen otomatik: sesli asistan müsait slotları sorgular, arayanla uygun zamanı kararlaştırır ve onaylanan randevuyu eş zamanlı olarak hem veritabanına hem de doktorun Google Calendar'ına yazar. SMS hatırlatıcıları her randevudan 24 saat önce gönderilir; hastalar aramaya gerek kalmadan "CANCEL" yazarak randevularını iptal edebilir.

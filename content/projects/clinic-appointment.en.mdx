@@ -1,0 +1,26 @@
+---
+title: "DentaBook — AI Dental Clinic"
+description: "A dental clinic management system with an AI voice receptionist that books appointments over the phone, syncs with Google Calendar, and sends Twilio SMS reminders."
+stack: ["TypeScript", "Node.js", "Vapi", "Google Calendar API", "Twilio", "PostgreSQL", "Prisma", "React"]
+date: "2024-11-10"
+github: "https://github.com/ahmethamdiozen/clinic-appointment-system"
+featured: true
+---
+
+## Overview
+
+A full-stack clinic management platform built around an AI voice receptionist. Patients call a Vapi phone number, speak naturally, and the assistant collects their details, checks doctor availability via Google Calendar's freebusy API, and books the appointment — no human operator needed. Staff manage the schedule through a React dashboard and receive real-time updates as bookings come in.
+
+## Stack
+
+- **Vapi** — AI voice assistant, handles inbound calls end-to-end
+- **Google Calendar API** — real-time availability checks and event creation
+- **Twilio** — outbound SMS reminders and inbound CANCEL reply handling
+- **Node.js + Express** — webhook server for Vapi and Twilio callbacks
+- **Prisma + PostgreSQL** — appointment and patient data
+- **node-cron** — scheduled reminder jobs
+- **React** — staff dashboard (pnpm monorepo)
+
+## Notes
+
+The booking flow is fully automated: the voice assistant queries freebusy slots, proposes times to the caller, and writes the confirmed appointment to both the database and the doctor's Google Calendar simultaneously. SMS reminders fire 24 hours before each appointment; patients can reply "CANCEL" to cancel without calling in.
