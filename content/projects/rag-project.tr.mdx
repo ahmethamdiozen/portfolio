@@ -1,24 +1,25 @@
 ---
-title: "RAG Doküman Arama"
-description: "Dokümanları vektör veri tabanına indeksleyip doğal dil sorularına kaynak atıflı cevaplar veren retrieval-augmented generation servisi."
-stack: ["Python", "FastAPI", "LangChain", "Qdrant", "OpenAI", "Next.js"]
+title: "RAG Doküman Soru-Cevap"
+description: "PDF yükle, istediğini sor — cevaplar token token akarak gelir, sayfa düzeyinde kaynak atıflarıyla desteklenir."
+stack: ["Python", "FastAPI", "OpenAI", "ChromaDB", "Next.js", "Docker"]
 date: "2024-09-15"
 github: "https://github.com/ahmethamdiozen/rag-project"
+demo: "https://rag.ahmethamdiozen.site"
 featured: true
 ---
 
 ## Genel Bakış
 
-RAG (retrieval-augmented generation) deseni üzerine kurulmuş bir doküman soru-cevap servisi. Dokümanlar parçalara bölünüp embed ediliyor ve vektör veri tabanında saklanıyor; sorgular anlamsal benzerlikle getiriliyor ve getirilen bağlamla birlikte LLM'e iletiliyor. Her cevap, oluşturulduğu kaynak pasajlarına referans içeriyor.
+Yüksek seviyeli orkestrasyon framework'leri kullanılmadan sıfırdan yazılmış bir RAG sistemi. PDF'ler örtüşen pencerelerle parçalanıp OpenAI ile embed ediliyor ve ChromaDB'de saklanıyor. Cevaplar SSE ile token token frontend'e akıyor; kaynak atıfları gösterilmeden önce ikinci bir LLM çağrısıyla grounding kontrolü yapılıyor.
 
 ## Teknolojiler
 
-- **FastAPI** — ingestion ve sorgu API'si
-- **LangChain** — chunking, retrieval ve prompt orkestrasyonu
-- **Qdrant** — embedding'ler için vektör veri tabanı
-- **OpenAI** — embedding ve chat completion modelleri
-- **Next.js** — yükleme ve sohbet arayüzü için frontend
+- **FastAPI** — yükleme, sorgulama ve SSE streaming API'si
+- **OpenAI** — embedding için `text-embedding-3-small`, tamamlama için `gpt-4o-mini`
+- **ChromaDB** — metadata filtrelemeli kalıcı vektör deposu
+- **pypdf** — sayfa bazında PDF metin çıkarımı
+- **Next.js** — sürükle-bırak yükleme, streaming cevap gösterimi, kaynak atıfları
 
 ## Notlar
 
-PDF, DOCX ve TXT ingestion destekliyor. Chunking, sınırlar arasında bağlamı korumak için örtüşen (overlapping) pencereler kullanıyor ve retrieval aşaması LLM'e geçmeden önce top-k + skor eşiği filtresi uyguluyor.
+RAG pipeline'ı LangChain olmadan sıfırdan implement edildi. Grounding kontrolü, kaynak atıfları gösterilmeden önce cevabın gerçekten getirilen chunk'larla desteklendiğini doğrular — bu da hallusinasyon riskini azaltır.

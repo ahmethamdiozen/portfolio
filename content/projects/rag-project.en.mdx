@@ -1,24 +1,25 @@
 ---
-title: "RAG Document Search"
-description: "A retrieval-augmented generation service that indexes documents into a vector store and answers natural-language questions with source citations."
-stack: ["Python", "FastAPI", "LangChain", "Qdrant", "OpenAI", "Next.js"]
+title: "RAG Document Q&A"
+description: "A cloud-hosted document question-answering system — upload a PDF, ask anything, get streaming answers grounded in the source material with page-level citations."
+stack: ["Python", "FastAPI", "OpenAI", "ChromaDB", "Next.js", "Docker"]
 date: "2024-09-15"
 github: "https://github.com/ahmethamdiozen/rag-project"
+demo: "https://rag.ahmethamdiozen.site"
 featured: true
 ---
 
 ## Overview
 
-A document question-answering service built on the RAG (retrieval-augmented generation) pattern. Documents are chunked, embedded, and stored in a vector database; queries are retrieved by semantic similarity and passed to an LLM along with the retrieved context. Every answer references the source passages it was generated from.
+A cloud-hosted RAG (retrieval-augmented generation) system built without high-level orchestration frameworks. PDFs are chunked with overlapping windows, embedded via OpenAI, and stored in ChromaDB. Answers stream token-by-token to the frontend and are grounded-checked against retrieved context before source citations are returned.
 
 ## Stack
 
-- **FastAPI** — ingestion and query API
-- **LangChain** — chunking, retrieval, and prompt orchestration
-- **Qdrant** — vector database for embeddings
-- **OpenAI** — embedding and chat completion models
-- **Next.js** — frontend for uploads and the chat interface
+- **FastAPI** — upload, query, and streaming SSE API
+- **OpenAI** — `text-embedding-3-small` for embeddings, `gpt-4o-mini` for completions
+- **ChromaDB** — persistent vector store with metadata filtering
+- **pypdf** — page-aware PDF text extraction
+- **Next.js** — drag-and-drop upload, streaming answer display, source citations
 
 ## Notes
 
-Supports PDF, DOCX, and TXT ingestion. Chunking uses overlapping windows to preserve context across boundaries, and the retrieval step applies a top-k + score threshold filter before handing results to the LLM.
+The RAG pipeline is implemented from scratch — no LangChain. The grounding check calls a secondary LLM to verify the answer is actually supported by the retrieved chunks before exposing source citations, reducing hallucination risk.
